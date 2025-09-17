@@ -15,9 +15,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Infinite Code — UAE BasedEnterprise IT Web Services",
+  title: "Infinite Code — UAE Based Enterprise IT Web Services",
   description:
-    "Infinite Code FZ LLC builds enterprise IT web services for banks.",
+    "Infinite Code FZ LLC builds enterprise IT web services.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

@@ -30,6 +30,23 @@ export default function AboutPage() {
             </address>
           </aside>
         </div>
+        <div className="mt-10">
+          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">Team</h2>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="rounded-xl border border-foreground/10 p-5 bg-background/60">
+              <h3 className="text-base font-medium">Ahmed Salih</h3>
+              <p className="mt-1 text-sm text-foreground/70">Director</p>
+            </div>
+            <div className="rounded-xl border border-foreground/10 p-5 bg-background/60">
+              <h3 className="text-base font-medium">Medet Gozukara</h3>
+              <p className="mt-1 text-sm text-foreground/70">Director</p>
+            </div>
+            <div className="rounded-xl border border-foreground/10 p-5 bg-background/60">
+              <h3 className="text-base font-medium">Ali Kawa</h3>
+              <p className="mt-1 text-sm text-foreground/70">Director</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
