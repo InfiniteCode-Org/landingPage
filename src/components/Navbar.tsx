@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState, useCallback } from "react";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -14,6 +15,8 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const closeMenu = useCallback(() => setOpen(false), []);
 
   return (
     <motion.header
@@ -56,8 +59,56 @@ export default function Navbar() {
               );
             })}
           </nav>
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            className="md:hidden inline-flex items-center justify-center rounded-md border border-foreground/10 bg-background/80 p-2 text-sm hover:bg-background/95"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="h-5 w-5"
+            >
+              <path d="M3.75 6.75h16.5a.75.75 0 0 0 0-1.5H3.75a.75.75 0 0 0 0 1.5Zm16.5 4.5H3.75a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5Zm0 6H3.75a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5Z" />
+            </svg>
+          </button>
         </div>
       </div>
+      {open && (
+        <>
+          <button
+            aria-label="Close menu"
+            className="fixed inset-0 z-40 bg-black/20"
+            onClick={closeMenu}
+          />
+          <motion.nav
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-16 inset-x-0 z-50"
+          >
+            <div className="mx-auto max-w-6xl px-4 sm:px-6">
+              <div className="rounded-xl border border-foreground/10 bg-background/95 p-4 shadow-lg">
+                <div className="flex flex-col gap-2 text-sm">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={closeMenu}
+                      className="rounded-md px-2 py-2 text-foreground/80 hover:text-foreground hover:bg-foreground/5"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.nav>
+        </>
+      )}
     </motion.header>
   );
 }
